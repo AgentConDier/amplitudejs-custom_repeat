@@ -1,118 +1,118 @@
 <!DOCTYPE html>
 <html>
-	<head>
+  <head>
     <style>
       button {
-			  background-color:#333; 
-			  border:2px solid #000; 
-			  border-radius:15px; 
-			  font-size:200%;
-			  padding:0px;
-			  transition-duration: 0.3s;
-			  color:#fff;
-			}
+        background-color:#333; 
+        border:2px solid #000; 
+        border-radius:15px; 
+        font-size:200%;
+        padding:0px;
+        transition-duration: 0.3s;
+        color:#fff;
+      }
       button:hover {
-			  box-shadow: 0 8px 20px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-			  background-color:#fff;
-			  border:2px solid #333;
-			  color:#000;
-			}
-			button:active {
-				background-color:#636;
-				color:#fff;
-			}
+        box-shadow: 0 8px 20px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+        background-color:#fff;
+        border:2px solid #333;
+        color:#000;
+      }
+      button:active {
+        background-color:#636;
+        color:#fff;
+      }
       #playpause {
-				float:left;
-				border-right:none;
-				border-left:none;
-				border-radius:0px;
-				height:50px;
-				width:50px;
-				background-image:url(./svg/PlayPauseW.svg);
-			}
-			#playpause:hover {
-				background-image:url(./svg/PlayPause.svg);
-			}
-			#playpause:active {
-				background-image:url(./svg/PlayPauseW.svg);
-			}
-			#next {
-				float:left;
-				border-left:none;
-				border-radius:0px 15px 15px 0px;
-				height:50px;
-				width:50px;
-				background-image:url(./svg/NextW.svg);
-			}
-			#next:hover {
-				background-image:url(./svg/Next.svg);
-			}
-			#next:active {
-				background-image:url(./svg/NextW.svg);
-			}
-			#prev {
-				float:left;
-				border-right:none;
-				border-radius:15px 0px 0px 15px;
-				height:50px;
-				width:50px;
-				background-image:url(./svg/PrevW.svg);
-			}
-			#prev:hover {
-				background-image:url(./svg/Prev.svg);
-			}
-			#prev:active {
-				background-image:url(./svg/PrevW.svg);
-			}
-			#custom-repeat {
-				position:absolute;
-				left:5px;
-				height:50px;
-				width:50px;
-				background-image:url(./svg/LoopW.svg);
-			}
-			#custom-repeat:hover {
-				background-image:url(./svg/Loop.svg);
-			}
-			#custom-repeat:active {
-				background-image:url(./svg/LoopW.svg);
-			}
+        float:left;
+        border-right:none;
+        border-left:none;
+        border-radius:0px;
+        height:50px;
+        width:50px;
+        background-image:url(./svg/PlayPauseW.svg);
+      }
+      #playpause:hover {
+        background-image:url(./svg/PlayPause.svg);
+      }
+      #playpause:active {
+        background-image:url(./svg/PlayPauseW.svg);
+      }
+      #next {
+        float:left;
+        border-left:none;
+        border-radius:0px 15px 15px 0px;
+        height:50px;
+        width:50px;
+        background-image:url(./svg/NextW.svg);
+      }
+      #next:hover {
+        background-image:url(./svg/Next.svg);
+      }
+      #next:active {
+        background-image:url(./svg/NextW.svg);
+      }
+      #prev {
+        float:left;
+        border-right:none;
+        border-radius:15px 0px 0px 15px;
+        height:50px;
+        width:50px;
+        background-image:url(./svg/PrevW.svg);
+      }
+      #prev:hover {
+        background-image:url(./svg/Prev.svg);
+      }
+      #prev:active {
+        background-image:url(./svg/PrevW.svg);
+      }
+      #custom-repeat {
+        position:absolute;
+        left:5px;
+        height:50px;
+        width:50px;
+        background-image:url(./svg/LoopW.svg);
+      }
+      #custom-repeat:hover {
+        background-image:url(./svg/Loop.svg);
+      }
+      #custom-repeat:active {
+        background-image:url(./svg/LoopW.svg);
+      }
       progress {
-			  width: 348px;
-			  height: 20px;
-			  background: #ccc;
-			  border:none;
-			  box-shadow: inset 0px 0px 10px #444;
-			}
-			progress::-webkit-progress-bar {
-				width: 348px;
-			  height: 20px;
-			  background: #ccc;
-			  border:none;
-			  box-shadow: inset 0px 0px 10px #444;
-			}
-			progress::-webkit-progress-value {
-				background: gold;
-				box-shadow: 0px 0px 10px gold;
-			}
-			progress::-moz-progress-bar {
-				background: gold;
-				box-shadow: 0px 0px 10px gold;
-			}
+        width: 348px;
+        height: 20px;
+        background: #ccc;
+        border:none;
+        box-shadow: inset 0px 0px 10px #444;
+      }
+      progress::-webkit-progress-bar {
+        width: 348px;
+        height: 20px;
+        background: #ccc;
+        border:none;
+        box-shadow: inset 0px 0px 10px #444;
+      }
+      progress::-webkit-progress-value {
+        background: gold;
+        box-shadow: 0px 0px 10px gold;
+      }
+      progress::-moz-progress-bar {
+        background: gold;
+        box-shadow: 0px 0px 10px gold;
+      }
       .custom-repeat-on, .amplitude-playing {
-				background: #3db1c1;
-			}
+        background: #3db1c1;
+      }
     </style>
   </head>
   <body>
     <progress class="amplitude-song-played-progress" id="song-played-progress" amplitude-main-song-played-progress="true"></progress>
     <div style="padding:10px;margin:auto;height:50px;position:relative;left:0px;top:0px;">
-		  <button type="button" onclick="toggleRepeat()" id="custom-repeat"></button>
-		  <div style="position:relative;left:91px;">
-		    <button type="button" class="amplitude-prev" onclick="if (repeat) {toggleRepeat();}" id="prev"></button>
-		    <button type="button" amplitude-main-play-pause="true" class="amplitude-play-pause" id="playpause"></button>
-		    <button type="button" class="amplitude-next" onclick="if (repeat) {toggleRepeat();}" id="next"></button>
-		  </div>
-		</div>
+      <button type="button" onclick="toggleRepeat()" id="custom-repeat"></button>
+      <div style="position:relative;left:91px;">
+        <button type="button" class="amplitude-prev" onclick="if (repeat) {toggleRepeat();}" id="prev"></button>
+        <button type="button" amplitude-main-play-pause="true" class="amplitude-play-pause" id="playpause"></button>
+        <button type="button" class="amplitude-next" onclick="if (repeat) {toggleRepeat();}" id="next"></button>
+      </div>
+    </div>
   </body>
 </HTML>
