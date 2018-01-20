@@ -8,7 +8,7 @@ Amplitude.init({'songs':[{
     if (repeat) Amplitude.playNow(repeatedSong);
   }
 }});
-window.onload = {
+window.onload = function() {
   document.getElementById('song-played-progress').addEventListener('click', function( e ){
     var offset = this.getBoundingClientRect();
     var x = e.pageX - offset.left;
