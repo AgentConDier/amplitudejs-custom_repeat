@@ -30,5 +30,29 @@
         <button type="button" class="amplitude-next" onclick="if (repeat) {toggleRepeat();}" id="next"></button>
       </div>
     </div>
+    <script>
+      Amplitude.init({'songs':[{
+          "url":"http://darnok2221.no-ip.biz/archive/dYpGXp0t8ZfctS834dn1.mp3",
+        },{
+          "url":"http://darnok2221.no-ip.biz/archive/SVq0BAye02Jo9XptkRoA.mp3",
+        }
+      ],'callbacks':{
+        'song_change': function(){
+          if (repeat) Amplitude.playNow(repeatedSong);
+        }
+      }});
+      var repeat = false;
+      var repeatedeSong;
+      function toggleRepeat() {
+        if (repeat) {
+          repeat = false;
+          document.getElementById('custom-repeat').classList.remove("custom-repeat-on");
+        } else {
+          repeatedSong = Amplitude.getActiveSongMetadata();
+          repeat = true;
+          document.getElementById('custom-repeat').classList.add("custom-repeat-on");
+        }
+      }
+    </script>
   </body>
 </HTML>
