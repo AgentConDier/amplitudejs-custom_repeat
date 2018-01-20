@@ -3,12 +3,17 @@
   <head>
     <meta charset="utf-8">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/amplitudejs@3.2.3/dist/amplitude.js"></script>
+    
+    <!-- contains extra code not relevant for this example -->
     <script type="text/javascript" src="init.js"></script>
+    
     <link href="styles.css" rel="stylesheet">
     <style>
+      /* defines the repeat button when repeat is enabled */
       .custom-repeat-on {
         background: #3db1c1;
       }
+      /* styling of the repeat button... (see also styles.css for general button styling)*/
       #custom-repeat {
         position:absolute;
         left:5px;
@@ -25,25 +30,65 @@
     </style>
   </head>
   <body>
+    
+    <!-- progress bar for skipping to the end of the song to test the repeat -->
     <progress class="amplitude-song-played-progress" id="song-played-progress" amplitude-main-song-played-progress="true"></progress>
+    
+    <!-- div for the buttons -->
     <div style="padding:10px;margin:auto;height:50px;position:relative;left:0px;top:0px;">
-      <button type="button" onclick="toggleRepeat()" id="custom-repeat"></button>
+      
+      <!-- the custom repeat button -->
+      <button type="button" onclick="toggleRepeat();" id="custom-repeat"></button>
+      
+      <!-- div for the <prev play next> button group -->
       <div style="position:relative;left:91px;">
-        <button type="button" class="amplitude-prev" onclick="if (repeat) {toggleRepeat();}" id="prev"></button>
+        
+        <!-- The onclick function disables repeat if the user skips manually, otherwise the buttons would only restart -->
+        <!-- the song if repeat is enabled. -->
+        <button type="button" class="amplitude-prev" onclick="if (repeat) toggleRepeat();" id="prev"></button>
         <button type="button" amplitude-main-play-pause="true" class="amplitude-play-pause" id="playpause"></button>
-        <button type="button" class="amplitude-next" onclick="if (repeat) {toggleRepeat();}" id="next"></button>
+        <button type="button" class="amplitude-next" onclick="if (repeat) toggleRepeat();" id="next"></button>
+        
       </div>
     </div>
     <script>
+      // initialise Amplitude, pretty standard
+      Amplitude.init({'songs':[{
+          "url":"http://darnok2221.no-ip.biz/archive/dYpGXp0t8ZfctS834dn1.mp3",
+        },{ // (  hope my music choices aren't too bad ;-)  )
+          "url":"http://darnok2221.no-ip.biz/archive/SVq0BAye02Jo9XptkRoA.mp3",
+        }
+      ],'callbacks':{
+        
+        // here, it gets interesting:
+        'song_change': function(){
+          // if repeat is enabled, force the repeated song to play (instead of the next song)
+          if (repeat) Amplitude.playNow(repeatedSong);
+        }
+      }});
+      
+      // this variable saves wether repeat is enabled or not
       var repeat = false;
+      
+      // this variable saves the metadata of the song that will be repeated
       var repeatedeSong;
+      
+      // function that gets called by the repeat button
       function toggleRepeat() {
         if (repeat) {
           repeat = false;
+          
+          // remove the custom-repeat-on class from the repeat button
           document.getElementById('custom-repeat').classList.remove("custom-repeat-on");
+          
         } else {
+          
+          // Save the metadata of the current song.
           repeatedSong = Amplitude.getActiveSongMetadata();
+          
           repeat = true;
+          
+          // add the class custom-repeat to the repeat button for a visual cue wether repeat is enabled
           document.getElementById('custom-repeat').classList.add("custom-repeat-on");
         }
       }
