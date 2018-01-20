@@ -1,0 +1,87 @@
+button {
+  background-color:#333; 
+  border:2px solid #000; 
+  border-radius:15px; 
+  font-size:200%;
+  padding:0px;
+  transition-duration: 0.3s;
+  color:#fff;
+}
+button:hover {
+  box-shadow: 0 8px 20px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  background-color:#fff;
+  border:2px solid #333;
+  color:#000;
+}
+button:active {
+  background-color:#636;
+  color:#fff;
+}
+#playpause {
+  float:left;
+  border-right:none;
+  border-left:none;
+  border-radius:0px;
+  height:50px;
+  width:50px;
+  background-image:url(./svg/PlayPauseW.svg);
+}
+#playpause:hover {
+  background-image:url(./svg/PlayPause.svg);
+}
+#playpause:active {
+  background-image:url(./svg/PlayPauseW.svg);
+}
+#next {
+  float:left;
+  border-left:none;
+  border-radius:0px 15px 15px 0px;
+  height:50px;
+  width:50px;
+  background-image:url(./svg/NextW.svg);
+}
+#next:hover {
+  background-image:url(./svg/Next.svg);
+}
+#next:active {
+  background-image:url(./svg/NextW.svg);
+}
+#prev {
+  float:left;
+  border-right:none;
+  border-radius:15px 0px 0px 15px;
+  height:50px;
+  width:50px;
+  background-image:url(./svg/PrevW.svg);
+}
+#prev:hover {
+  background-image:url(./svg/Prev.svg);
+}
+#prev:active {
+  background-image:url(./svg/PrevW.svg);
+}
+progress {
+  width: 348px;
+  height: 20px;
+  background: #ccc;
+  border:none;
+  box-shadow: inset 0px 0px 10px #444;
+}
+progress::-webkit-progress-bar {
+  width: 348px;
+  height: 20px;
+  background: #ccc;
+  border:none;
+  box-shadow: inset 0px 0px 10px #444;
+}
+progress::-webkit-progress-value {
+  background: gold;
+  box-shadow: 0px 0px 10px gold;
+}
+progress::-moz-progress-bar {
+  background: gold;
+  box-shadow: 0px 0px 10px gold;
+}
+.amplitude-playing {
+  background: #3db1c1;
+}
